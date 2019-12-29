@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<STYLE>A {text-decoration: none;} </STYLE>
+
+<div class = "todo_header">
+<h1>Todo Manager</h1>
+</div>
+
+<h3><%= "Search by keyword" %></h3>
+<%= form_tag(todo_managers_path, method: :get, class: 'navbar-form navbar-left') do %>  
+ 
+    <%= text_field_tag(:search, params[:search], placeholder: "Search by Title or Description...", class: "form-control") %> 
+    <%= submit_tag ("Search"), :class => 'btn btn-info glyphicon glyphicon-search', :name => nil %> 
+<% end %>
+<br>
+
+<% if params[:search] and @todo_managers.size == 0 %>
+    <div class = "alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        <strong>Search term not found!</strong> Please refine your search.
+    </div>
+<% end %>
+
+<br>
+
+<table class = "fixed_header">
+
+  <thead>
+    <tr>
+      <th>No.</th>  
+      <th >Title</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% count = 1  %>
+    <% @todo_managers.each do |todo_manager| %>
+    <% if !todo_manager.attributes[:completed_at] %>
+      <tr>
+        <td><%= count %></td>
+        <td><%= todo_manager.title %></td>
+        <td><%= todo_manager.description %></td>
+        <td><%= link_to 'Show', todo_manager %></td>
+        <td><%= link_to 'Edit', edit_todo_manager_path(todo_manager) %></td>
+        <td><%= link_to 'Delete', todo_manager, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mark as Complete', complete_todo_manager_path(todo_manager), method: :patch %></td>
+      </tr>
+      <% count += 1 %>
+    <% end %>
+    <% end %>
+  </tbody>
+
+
+</table>
+<br>
+<%= button_to 'New Todo Item', new_todo_manager_path, method: :get %>
+<br><br>
+
+
+<div>
+Total todo items: <%= @todo_managers.size %>
+</div>
+
