@@ -1,16 +1,16 @@
 # README
 
 Name: Lim Yong Jian Jared /
-Student ID: A0201322E 
+Student ID: A0201322E /
 NUS mail: e0411165@u.nus.edu
 
-*Ruby 2.6.5
-*Rails 6.0.2
-*React-rails 2.6
+* Ruby 2.6.5
+* Rails 6.0.2
+* React-rails 2.6
 
 * System dependencies
-Win 10
-Sqlite3
+1.Win 10
+2. Sqlite3
 
 * Database initialization
 
