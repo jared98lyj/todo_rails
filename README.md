@@ -1,9 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+Name: Lim Yong Jian Jared 
+Student ID: A0201322E 
+NUS mail: e0411165@u.nus.edu
 
 Ruby 2.6.5
 Rails 6.0.2
