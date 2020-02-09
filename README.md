@@ -5,20 +5,18 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+Ruby 2.6.5
+Rails 6.0.2
+React-rails 2.6
 
 * System dependencies
-
-* Configuration
-
-* Database creation
+Win 10
+Sqlite3
 
 * Database initialization
 
 * How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. On CMD change directory to root folder C:/.../todo_rails
+2. Run rails s
+3. Navigate to localhost:3000 on browser
+4. Main app should be displayed 
