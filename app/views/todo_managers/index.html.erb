@@ -13,45 +13,82 @@
 <% end %>
 <br>
 
+<%
+=begin%>
+ Raising an error if search term is present and not found 
+<%
+=end%>
 <% if params[:search] and @todo_managers.size == 0 %>
     <div class = "alert">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
         <strong>Search term not found!</strong> Please refine your search.
     </div>
 <% end %>
-
 <br>
 
 <table class = "fixed_header">
-
-  <thead>
+<h2>Completed Tasks</h2>
+<thead>
     <tr>
-      <th>No.</th>  
-      <th >Title</th>
-      <th>Description</th>
+    <th>No.</th>  
+    <th >Title</th>
+    <th>Description</th>
     </tr>
-  </thead>
+</thead>
 
-  <tbody>
+<tbody>
     <% count = 1  %>
     <% @todo_managers.each do |todo_manager| %>
-    <% if !todo_manager.attributes[:completed_at] %>
-      <tr>
+    <% if todo_manager.completed %>
+    <tr>
         <td><%= count %></td>
         <td><%= todo_manager.title %></td>
+
         <td><%= todo_manager.description %></td>
         <td><%= link_to 'Show', todo_manager %></td>
         <td><%= link_to 'Edit', edit_todo_manager_path(todo_manager) %></td>
         <td><%= link_to 'Delete', todo_manager, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Mark as Complete', complete_todo_manager_path(todo_manager), method: :patch %></td>
-      </tr>
-      <% count += 1 %>
+    </tr>
+    <% count += 1 %>
     <% end %>
     <% end %>
-  </tbody>
-
+</tbody>
 
 </table>
+<table class = "fixed_header">
+<h2>Uncompleted Tasks</h2>
+<thead>
+    <tr>
+    <th>No.</th>  
+    <th >Title</th>
+    <th>Description</th>
+    </tr>
+</thead>
+
+<tbody>
+    <% count = 1  %>
+    <% @todo_managers.each do |todo_manager| %>
+    <% if !todo_manager.completed %>
+
+    <tr>
+        <td><%= count %></td>
+        <td><%= todo_manager.title %></td>
+
+        <td><%= todo_manager.description %></td>
+        <td><%= link_to 'Show', todo_manager %></td>
+        <td><%= link_to 'Edit', edit_todo_manager_path(todo_manager) %></td>
+        <td><%= link_to 'Delete', todo_manager, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mark as Complete', complete_todo_manager_path(todo_manager), method: :patch %></td>
+    </tr>
+    <% count += 1 %>
+    <% end %>
+    <% end %>
+</tbody>
+
+</table>
+
+
 <br>
 <%= button_to 'New Todo Item', new_todo_manager_path, method: :get %>
 <br><br>

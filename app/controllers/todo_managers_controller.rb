@@ -5,6 +5,7 @@ class TodoManagersController < ApplicationController
   # GET /todo_managers
   # GET /todo_managers.json
   def index
+    #Search function defined privately below; params[:search] from search_form in index.html.erb
     key_search(params[:search])
   end
 
@@ -64,8 +65,12 @@ class TodoManagersController < ApplicationController
 
   def complete
     @todo_manager = TodoManager.find_by_id(params[:id])
-    @todo_manager.update_attribute(:completed_at, DateTime.current)
-    flash[:success] = "Todo item completed"
+    # Checking if task has already been marked as completed 
+    if @todo_manager.completed_at
+        @todo_manager.update_attributes(:completed_at => false, :completed => false)
+    else   
+        @todo_manager.update_attributes(:completed_at => DateTime.current, :completed => true)
+    end
   end
   
   private
@@ -80,7 +85,7 @@ class TodoManagersController < ApplicationController
     end
 
     def key_search(search)
-        if search #Will return 0 entries if search term is not found @temp_var
+        if search #Will return 0 entries if search term is not found; basic SQL querying
             @todo_managers = TodoManager.where("LOWER(title) Like ? OR LOWER(description) LIKE ?", 
             "%#{search.downcase}%", "%#{search.downcase}%")
         else  #Returns all the entries in the model if search term is NIL

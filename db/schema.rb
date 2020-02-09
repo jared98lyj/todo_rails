@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_21_043404) do
+ActiveRecord::Schema.define(version: 2020_01_03_065536) do
 
   create_table "todo_items", force: :cascade do |t|
     t.string "content"
@@ -27,7 +27,8 @@ ActiveRecord::Schema.define(version: 2019_12_21_043404) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "tags"
     t.date "deadline"
-    t.datetime "completed_at", null: false
+    t.datetime "completed_at"
+    t.boolean "completed", default: false
   end
 
   add_foreign_key "todo_items", "todo_lists"

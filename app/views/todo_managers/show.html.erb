@@ -10,6 +10,25 @@
   <%= @todo_manager.description %>
 </p>
 
+<p>
+  <strong>To be completed by:</strong>
+  <%= @todo_manager.deadline %>
+</p>
+
+<p>
+  <strong>Completed at:</strong>
+  <%= @todo_manager.completed_at %>
+</p>
+
+<p>
+  <strong>Completed ?</strong>
+  <% if @todo_manager.completed %>
+    <%= "Completed" %>
+    <% else %>
+    <%= "Not completed" %>
+    <% end %>
+</p>
+
 
 
 
