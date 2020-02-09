@@ -8,11 +8,9 @@ NUS mail: e0411165@u.nus.edu
 * Rails 6.0.2
 * React-rails 2.6
 
-* System dependencies
-1.Win 10
-2. Sqlite3
+* Win 10
+* Sqlite3
 
-* Database initialization
 
 * How to run the test suite
 1. On CMD change directory to root folder C:/.../todo_rails
